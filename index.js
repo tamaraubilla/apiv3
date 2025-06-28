@@ -52,6 +52,6 @@ app.post('/ubicaciones', async (req, res) => {
 
 
 
-app.listen(80, '0.0.0.0', () => {
-  console.log(`Servidor corriendo en puerto 80`);
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en puerto ${port}`);
 });
