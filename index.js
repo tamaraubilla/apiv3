@@ -33,7 +33,7 @@ app.post('/alertas', async (req, res) => {
 }});
 
 app.get('/ubicaciones', async (req, res) => {
-  const { data, error } = await supabase.from('alertas').select('*');
+  const { data, error } = await supabase.from('ubicaciones').select('*');
   if (error) return res.status(500).json({ error });
   res.json(data);
 });
@@ -41,7 +41,7 @@ app.get('/ubicaciones', async (req, res) => {
 app.post('/ubicaciones', async (req, res) => {
   const { latitud, longitud } = req.body;
   try{
-  const { data, error } = await supabase.from('alertas').insert([{ ubicacion: `SRID=4326;POINT(${longitud} ${latitud})`}]);
+  const { data, error } = await supabase.from('ubicaciones').insert([{ ubicacion: `SRID=4326;POINT(${longitud} ${latitud})`}]);
   if (error) return res.status(500).json({ error: 'Supabase error', detalle: error.message });
   res.status(200).json({mensaje:'Ubicacion Guardada', data });
   }
@@ -52,6 +52,6 @@ app.post('/ubicaciones', async (req, res) => {
 
 
 
-app.listen(80, '0.0.0.0',() => {
-  console.log('Servidor escuchando en el puerto 80');
+app.listen(80, '0.0.0.0', () => {
+  console.log(`Servidor corriendo en puerto 80`);
 });
